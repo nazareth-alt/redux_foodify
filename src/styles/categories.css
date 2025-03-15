@@ -1,0 +1,42 @@
+/* Center the categories section */
+.container {
+    text-align: center;
+  }
+  
+  /* Style category cards */
+  .card {
+    width: 100%;
+    max-width: 250px; /* Limit max width */
+    margin: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  /* Hover effect: Slightly increase size and add shadow */
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Ensure images have the same size */
+  .card-img-top {
+    height: 160px; /* Fixed height */
+    object-fit: cover; /* Ensure all images fit nicely */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  /* Button styling */
+  .category-button {
+    width: 100%;
+    background-color: #007bff;
+    border: none;
+    padding: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .category-button:hover {
+    background-color: #0056b3;
+  }
+  

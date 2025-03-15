@@ -1,0 +1,31 @@
+.favorite {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .favorite:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  .heart-icon {
+    font-size: 1.5rem;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .heart-icon:hover {
+    color: red;
+  }
+  
+  .text-danger {
+    color: red !important;
+  }
+  
+  .text-secondary {
+    color: gray !important;
+  }
+  

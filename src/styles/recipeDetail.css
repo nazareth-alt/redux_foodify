@@ -1,0 +1,56 @@
+.recipe-detail {
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .recipe-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .recipe-image {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .recipe-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .favorite {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  .heart-icon {
+    color: red;
+    font-size: 24px;
+  }
+  
+  .ratings {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .star-icon {
+    color: gold;
+  }
+  
+  .method-section {
+    margin-top: 20px;
+  }
+  
+  .comments-section {
+    margin-top: 20px;
+  }
+  
+  .comment {
+    margin-top: 10px;
+  }
+  
