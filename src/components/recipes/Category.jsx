@@ -3,9 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Spinner, Alert } from "react-bootstrap";
 import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { add, remove } from "../../store/favoriteSlice"; // Import add, remove action
-import "../../styles/Category.css"; // Adjust the path if needed
-
+import { addToFavorites, removeFromFavorites } from "../../store/favoriteSlice"; // ✅ Correct imports
+import "../../styles/Category.css"; // Adjust path if needed
 
 const Category = () => {
   const dispatch = useDispatch();
@@ -14,6 +13,8 @@ const Category = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const API_KEY = "70904b327c65457294273ec949fcb10f"; // Spoonacular API key
 
   const categoryMapping = {
     breakfast: "breakfast",
@@ -34,7 +35,7 @@ const Category = () => {
 
       try {
         const response = await fetch(
-          `https://api.edamam.com/search?q=${query}&app_id=051b1017&app_key=1f5df7a0b617229008922db3009c4c86`
+          `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=10&apiKey=${API_KEY}`
         );
 
         if (!response.ok) {
@@ -42,7 +43,7 @@ const Category = () => {
         }
 
         const data = await response.json();
-        setRecipes(data.hits.length > 0 ? data.hits : []);
+        setRecipes(data.results.length > 0 ? data.results : []);
       } catch (error) {
         console.error("Error fetching category recipes:", error);
         setError("Failed to load recipes. Please check your API key and try again.");
@@ -55,11 +56,11 @@ const Category = () => {
   }, [type]);
 
   const toggleFavorite = (recipe) => {
-    const isFavorite = favorites.some((fav) => fav.uri === recipe.uri);
+    const isFavorite = favorites.some((fav) => fav.id === recipe.id);
     if (isFavorite) {
-      dispatch(remove(recipe.uri));
+      dispatch(removeFromFavorites(recipe.id)); // Correct action
     } else {
-      dispatch(add(recipe));
+      dispatch(addToFavorites(recipe)); // Correct action
     }
   };
 
@@ -81,20 +82,20 @@ const Category = () => {
       )}
 
       <Row>
-        {recipes.map(({ recipe }) => {
-          const isFavorite = favorites.some((fav) => fav.uri === recipe.uri);
+        {recipes.map((recipe) => {
+          const isFavorite = favorites.some((fav) => fav.id === recipe.id);
 
           return (
-            <Col sm={6} md={4} lg={3} key={recipe.uri}>
+            <Col sm={6} md={4} lg={3} key={recipe.id}>
               <Card className="h-100 shadow-sm">
                 <div className="favorite" onClick={() => toggleFavorite(recipe)} style={{ cursor: "pointer" }}>
                   <FaHeart className={`heart-icon ${isFavorite ? "text-danger" : "text-secondary"}`} />
                   <span>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</span>
                 </div>
-                <Card.Img variant="top" src={recipe.image} alt={recipe.label} />
+                <Card.Img variant="top" src={recipe.image} alt={recipe.title} />
                 <Card.Body>
-                  <Card.Title>{recipe.label}</Card.Title>
-                  <Link to={`/recipe/${encodeURIComponent(recipe.uri)}`}>
+                  <Card.Title>{recipe.title}</Card.Title>
+                  <Link to={`/recipe/${recipe.id}`}>
                     <Button variant="primary" className="w-100">View Recipe</Button>
                   </Link>
                 </Card.Body>
@@ -108,5 +109,4 @@ const Category = () => {
 };
 
 export default Category;
-
 

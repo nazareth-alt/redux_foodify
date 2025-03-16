@@ -1,50 +1,43 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Spinner, Button } from "react-bootstrap";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const Trends = () => {
-  const [recipes, setRecipes] = useState([]); // Initialize state to hold recipes
-  const [loading, setLoading] = useState(true); // To track loading state
-  const [error, setError] = useState(""); // Error state to store API errors
+  const [recipes, setRecipes] = useState([]); // Holds the trending recipes
+  const [loading, setLoading] = useState(true); // Tracks loading state
+  const [error, setError] = useState(""); // Stores API errors
 
-  const YOUR_APP_ID = "051b1017";
-  const YOUR_APP_KEY = "1f5df7a0b617229008922db3009c4c86";
-  const USER_ID = "nazaret277"; // My actual userId
+  const API_KEY = "70904b327c65457294273ec949fcb10f"; // Spoonacular API key
 
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
         const response = await fetch(
-          `https://api.edamam.com/search?q=popular&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`,
-          {
-            method: "GET",
-            headers: {
-              "Edamam-Account-User": USER_ID, // Add the User ID in the headers
-            },
-          }
+          `https://api.spoonacular.com/recipes/random?number=8&apiKey=${API_KEY}`
         );
         const data = await response.json();
-        console.log("Full API Response:", data); // Log full API response
+        console.log("API Response:", data); // Log API response for debugging
 
-        if (data.hits && data.hits.length > 0) {
-          setRecipes(data.hits); // Set recipes if hits are found
+        if (data.recipes && data.recipes.length > 0) {
+          setRecipes(data.recipes); // Store fetched recipes
         } else {
-          setError("No trending recipes available."); // Set error message if no hits
+          setError("No trending recipes available."); // Handle no recipes found
         }
       } catch (error) {
         console.error("Error fetching recipes:", error);
         setError("Failed to fetch trending recipes. Please try again later.");
       } finally {
-        setLoading(false); // Set loading to false after the fetch is done
+        setLoading(false); // Stop loading spinner after fetch
       }
     };
 
     fetchRecipes();
-  }, []); // Empty dependency array ensures this runs once when the component mounts
+  }, []); // Fetch data on component mount
 
+  // Function to retry fetching recipes in case of an error
   const retryFetch = () => {
     setLoading(true);
-    setError(""); // Clear the error message
+    setError("");
     fetchRecipes();
   };
 
@@ -74,14 +67,14 @@ const Trends = () => {
         <p className="text-center">No trending recipes available.</p>
       ) : (
         <Row>
-          {recipes.slice(0, 4).map(({ recipe }) => (
-            <Col sm={6} md={3} key={recipe.uri}>
+          {recipes.map((recipe) => (
+            <Col sm={6} md={3} key={recipe.id}>
               <Card className="mb-4">
-                <Card.Img variant="top" src={recipe.image} />
+                <Card.Img variant="top" src={recipe.image} alt={recipe.title} />
                 <Card.Body>
-                  <Card.Title>{recipe.label}</Card.Title>
+                  <Card.Title>{recipe.title}</Card.Title>
                   <Link
-                    to={`/recipe/${recipe.uri}`} // Navigate to the recipe detail page
+                    to={`/recipe/${recipe.id}`} // Use Spoonacular ID format
                     className="btn btn-primary"
                   >
                     View Recipe
@@ -97,3 +90,4 @@ const Trends = () => {
 };
 
 export default Trends;
+

@@ -20,13 +20,13 @@ const Categories = () => {
       <h2 className="text-center mb-4">Categories</h2>
       <Row>
         {categories.map((category, index) => (
-          <Col sm={6} md={4} lg={3} key={index}>
-            <Card className="h-100">
+          <Col sm={6} md={4} lg={3} key={index} className="mb-4">
+            <Card className="category-card">
               <Card.Img variant="top" src={category.image} alt={category.name} />
               <Card.Body>
                 <Card.Title>{category.name}</Card.Title>
                 <Link to={category.link}>
-                  <Button variant="primary">Explore</Button>
+                  <Button variant="primary" className="explore-button">Explore</Button>
                 </Link>
               </Card.Body>
             </Card>

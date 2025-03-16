@@ -3,28 +3,28 @@ import { useLocation, Link } from "react-router-dom";
 import { Card, Button, Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 
 const RecipeSearch = () => {
-  const [recipes, setRecipes] = useState([]); // State to store recipes
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(""); // Error state
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const searchQuery = queryParams.get("query") || "";
 
-  const YOUR_APP_ID = '051b1017';
-  const YOUR_APP_KEY = '1f5df7a0b617229008922db3009c4c86';
+  const SPOONACULAR_API_KEY = "70904b327c65457294273ec949fcb10f";
 
   useEffect(() => {
     const fetchRecipes = async () => {
       setLoading(true);
-      setError(""); // Reset error before fetching
+      setError("");
+
       try {
         const response = await fetch(
-          `https://api.edamam.com/search?q=${searchQuery}&app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}`
+          `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=${SPOONACULAR_API_KEY}&number=12`
         );
         const data = await response.json();
 
-        if (response.ok) {
-          setRecipes(data.hits);
+        if (response.ok && data.results?.length) {
+          setRecipes(data.results);
         } else {
           throw new Error("No results found.");
         }
@@ -64,13 +64,13 @@ const RecipeSearch = () => {
 
       {/* Display Recipes */}
       <Row className="g-4">
-        {recipes.map(({ recipe }) => (
-          <Col sm={6} md={4} lg={3} key={recipe.uri}>
+        {recipes.map((recipe) => (
+          <Col sm={6} md={4} lg={3} key={recipe.id}>
             <Card className="h-100 text-center">
               <Card.Img
                 variant="top"
                 src={recipe.image}
-                alt={recipe.label}
+                alt={recipe.title}
                 style={{
                   width: "100%",
                   height: "180px",
@@ -79,11 +79,9 @@ const RecipeSearch = () => {
                 }}
               />
               <Card.Body className="d-flex flex-column justify-content-between">
-                <Card.Title className="text-truncate">{recipe.label}</Card.Title>
-                <Card.Text className="text-muted">
-                  {recipe.ingredients.length} ingredients
-                </Card.Text>
-                <Link to={`/recipe/${recipe.uri}`} className="btn btn-primary">
+                <Card.Title className="text-truncate">{recipe.title}</Card.Title>
+                <Card.Text className="text-muted">ID: {recipe.id}</Card.Text>
+                <Link to={`/recipe/${recipe.id}`} className="btn btn-primary">
                   View Recipe
                 </Link>
               </Card.Body>
@@ -96,4 +94,5 @@ const RecipeSearch = () => {
 };
 
 export default RecipeSearch;
+
 

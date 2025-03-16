@@ -1,56 +1,169 @@
 .recipe-detail {
-    max-width: 900px;
-    margin: auto;
-  }
-  
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background: #E07A5F;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+.recipe-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap; /* Makes sure the content wraps on smaller screens */
+
+}
+.recipe-image-container {
+  flex: 1 1 45%; /* Flexbox: Take up 45% of the available space */
+  max-width: 45%; /* Limit width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipe-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-info {
+  flex: 1 1 45%; /* Flexbox: Take up 45% of the available space */
+  max-width: 45%; /* Limit width */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+}
+
+.recipe-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+}
+
+.ratings {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: gold;
+}
+
+.star-icon {
+  color: gold;
+  font-size: 20px;
+}
+
+.instructions {
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.method-section {
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.comments-section {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fafafa;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #555;
+}
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.like-button,
+.dislike-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease;
+  border: none;
+}
+
+.like-button {
+  background: #28a745;
+  color: white;
+}
+
+.like-button:hover {
+  background: #218838;
+  transform: scale(1.05);
+}
+
+.dislike-button {
+  background: #dc3545;
+  color: white;
+}
+
+.dislike-button:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .recipe-header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .recipe-image {
-    width: 100%;
-    border-radius: 10px;
-  }
-  
-  .recipe-info {
-    display: flex;
     flex-direction: column;
-    gap: 10px;
+    text-align: center;
+    justify-content: center; /* Center the content on smaller screens */
+
   }
-  
-  .favorite {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
+
+  .recipe-image-container,
+  .recipe-info {
+    flex: 1 1 100%; /* Full width on small screens */
+    max-width: 100%; /* Full width on small screens */
   }
-  
-  .heart-icon {
-    color: red;
-    font-size: 24px;
-  }
-  
-  .ratings {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  
-  .star-icon {
-    color: gold;
-  }
-  
-  .method-section {
-    margin-top: 20px;
-  }
-  
+
+  .method-section,
   .comments-section {
-    margin-top: 20px;
+    padding: 10px;
   }
-  
+
   .comment {
-    margin-top: 10px;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
+  .comment-actions {
+    flex-wrap: wrap;
+  }
+}
+

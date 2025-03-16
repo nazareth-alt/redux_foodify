@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #E07A5F;
 }
 
 .logo {
@@ -40,3 +41,74 @@
 .read-the-docs {
   color: #888;
 }
+
+/* RecipePage styling */
+.recipes-page {
+  padding: 40px 0;
+}
+
+.recipe-card {
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+}
+
+.recipe-card img {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+/*ContactsPage styling*/
+.contacts-page {
+  padding: 40px 0;
+}
+
+.contact-card {
+  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.contact-card:hover {
+  transform: scale(1.05);
+}
+
+.contact-icon {
+  font-size: 40px;
+  color: #E07A5F;
+  margin-bottom: 10px;
+}
+
+/*NotFound styles*/
+.not-found-page {
+  background-color: E07A5F; /* Light background color */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #dc3545; /* Red color for error */
+}
+
+.error-message {
+  font-size: 1.2rem;
+  color: #6c757d; /* Grey color for the error message */
+  margin-top: 1rem;
+}
+
+.back-home-btn {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  padding: 0.8rem 2rem;
+}
+
+

@@ -5,6 +5,7 @@
     cursor: pointer;
     padding: 5px;
     transition: all 0.3s ease-in-out;
+    background-color: #E07A5F;
   }
   
   .favorite:hover {

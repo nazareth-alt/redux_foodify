@@ -1,42 +1,57 @@
-/* Center the categories section */
-.container {
-    text-align: center;
+/* Style category cards */
+.category-card {
+  height: 100%; /* Ensure cards stretch to fill available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This ensures button stays at the bottom */
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure images have consistent size */
+.category-card img {
+  height: 200px; /* Fixed height for images */
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Button styling */
+.explore-button {
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.explore-button:hover {
+  background-color: #0056b3;
+}
+
+/* Margin below cards */
+.col.mb-4 {
+  margin-bottom: 30px; /* Adjust this value for card spacing */
+}
+
+/* Responsiveness */
+@media (max-width: 576px) {
+  .category-card img {
+    height: 150px; /* Smaller images on small screens */
   }
-  
-  /* Style category cards */
-  .card {
-    width: 100%;
-    max-width: 250px; /* Limit max width */
-    margin: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  .category-card {
+    height: auto; /* Allow card height to adjust based on content */
   }
-  
-  /* Hover effect: Slightly increase size and add shadow */
-  .card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .category-card img {
+    height: 180px; /* Adjust image size for tablets */
   }
-  
-  /* Ensure images have the same size */
-  .card-img-top {
-    height: 160px; /* Fixed height */
-    object-fit: cover; /* Ensure all images fit nicely */
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-  
-  /* Button styling */
-  .category-button {
-    width: 100%;
-    background-color: #007bff;
-    border: none;
-    padding: 8px;
-    font-weight: bold;
-    transition: background 0.3s;
-  }
-  
-  .category-button:hover {
-    background-color: #0056b3;
-  }
-  
+}

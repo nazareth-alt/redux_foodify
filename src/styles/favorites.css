@@ -1,0 +1,90 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #E07A5F;
+  }
+
+  /* Increase width of the container */
+.favorites-container {
+    max-width: 1400px; /* Makes the container wider */
+    padding: 0 20px; /* Adds padding for better spacing */
+  }
+  
+  /* Increase row spacing and prevent small cards */
+  .row.justify-content-center {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Increased spacing between cards */
+  }
+  
+  /* Adjust column width to prevent shrinking */
+  .favorite-col {
+    flex: 1 1 300px; /* Ensures columns maintain a minimum width */
+    max-width: 350px; /* Prevents them from getting too big */
+  }
+  
+  /* Card Styles */
+  .recipe-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .recipe-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-img {
+    border-radius: 8px;
+    object-fit: cover;
+    height: 200px;
+  }
+  
+  /* Button Styles */
+  button {
+    font-weight: 600;
+  }
+  
+  /* Text Align */
+  .text-center {
+    text-align: center;
+  }
+  
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .favorite-col {
+      flex: 1 1 350px; /* Keeps columns from shrinking */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .favorite-col {
+      flex: 1 1 100%; /* Full width for small screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .card-img {
+      height: 180px;
+    }
+    .row.justify-content-center {
+        display: flex;
+        justify-content: center;
+        gap: 16px; /* Spacing between the cards */
+      }
+      
+      /* Preventing cards from becoming too narrow */
+      .col {
+        min-width: 220px; /* Minimum width to prevent small shrinking */
+      }
+  }
+  
+  
+  
+  
+
+  
+  
+  

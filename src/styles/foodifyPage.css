@@ -1,0 +1,105 @@
+/* General Page Styles */
+.foodify-page {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: brown;
+  }
+  
+  .foodify-header {
+    background-color: #E07A5F;
+    padding: 40px 0;
+  }
+  
+  .foodify-header h1 {
+    font-size: 3rem;
+    color: #333;
+  }
+  
+  .foodify-header p {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .hero-section {
+    padding: 60px 0;
+    background-color: #E07A5F;
+  }
+  
+  .hero-section .hero-text h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .hero-section .hero-image img {
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .owner-section {
+    padding: 60px 0;
+    background-color: #E07A5F;
+  }
+  
+  .owner-section .owner-image img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .owner-info h3 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .recipes-section {
+    padding: 60px 0;
+    background-color: #E07A5F;
+  }
+  
+  .recipes-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .recipe-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .recipe-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .recipe-img {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }  
+  
+  .stakeholders-section {
+    padding: 60px 0;
+    background-color: #E07A5F;
+  }
+  
+  .stakeholder-card {
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .stakeholder-card:hover {
+    transform: scale(1.05);
+  }
+  
+  
+  
