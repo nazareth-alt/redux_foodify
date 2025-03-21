@@ -111,4 +111,26 @@
   padding: 0.8rem 2rem;
 }
 
+/* About page styling */
+
+/* Ensure equal card height */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Add consistent margin between cards */
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+/* Responsive image styling */
+.stakeholder-img {
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+}
+
 
