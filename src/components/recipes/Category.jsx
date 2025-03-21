@@ -32,18 +32,20 @@ const Category = () => {
       setLoading(true);
       setError(null);
       const query = categoryMapping[type] || type;
-
+  
       try {
         const response = await fetch(
           `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=10&apiKey=${API_KEY}`
         );
-
+  
         if (!response.ok) {
           throw new Error(`API Error: ${response.statusText} (${response.status})`);
         }
-
+  
         const data = await response.json();
-        setRecipes(data.results.length > 0 ? data.results : []);
+        // Filter out recipes without images
+        const filteredRecipes = data.results.filter((recipe) => recipe.image);
+        setRecipes(filteredRecipes.length > 0 ? filteredRecipes : []);
       } catch (error) {
         console.error("Error fetching category recipes:", error);
         setError("Failed to load recipes. Please check your API key and try again.");
@@ -51,7 +53,7 @@ const Category = () => {
         setLoading(false);
       }
     };
-
+  
     fetchCategoryRecipes();
   }, [type]);
 
@@ -109,4 +111,5 @@ const Category = () => {
 };
 
 export default Category;
+
 
