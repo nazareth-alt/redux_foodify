@@ -19,7 +19,7 @@ React Router: For seamless navigation between different parts of the app.
 Bootstrap: For responsive design and easy styling.
 
 My netlify link address
-https://naz-foodifyapp.netlify.app/
+https://nazareth-foodify.netlify.app/
 
 
 Future Improvements
