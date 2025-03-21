@@ -17,9 +17,11 @@ const Trends = () => {
         );
         const data = await response.json();
         console.log("API Response:", data); // Log API response for debugging
-
+  
         if (data.recipes && data.recipes.length > 0) {
-          setRecipes(data.recipes); // Store fetched recipes
+          // Filter out recipes without images
+          const filteredRecipes = data.recipes.filter((recipe) => recipe.image);
+          setRecipes(filteredRecipes); // Store only recipes with images
         } else {
           setError("No trending recipes available."); // Handle no recipes found
         }
@@ -30,7 +32,7 @@ const Trends = () => {
         setLoading(false); // Stop loading spinner after fetch
       }
     };
-
+  
     fetchRecipes();
   }, []); // Fetch data on component mount
 
@@ -68,17 +70,25 @@ const Trends = () => {
       ) : (
         <Row>
           {recipes.map((recipe) => (
-            <Col sm={6} md={3} key={recipe.id}>
-              <Card className="mb-4">
-                <Card.Img variant="top" src={recipe.image} alt={recipe.title} />
-                <Card.Body>
+            <Col sm={6} md={3} key={recipe.id} className="mb-4">
+              <Card className="h-100 d-flex flex-column">
+                {/* Handle missing images by providing a default */}
+                <Card.Img
+                  variant="top"
+                  src={recipe.image || "https://via.placeholder.com/300"}
+                  alt={recipe.title}
+                />
+                <Card.Body className="d-flex flex-column">
                   <Card.Title>{recipe.title}</Card.Title>
-                  <Link
-                    to={`/recipe/${recipe.id}`} // Use Spoonacular ID format
-                    className="btn btn-primary"
-                  >
-                    View Recipe
-                  </Link>
+                  {/* Pushes the button to the bottom */}
+                  <div className="mt-auto">
+                    <Link
+                      to={`/recipe/${recipe.id}`}
+                      className="btn btn-primary w-100"
+                    >
+                      View Recipe
+                    </Link>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>
@@ -90,4 +100,3 @@ const Trends = () => {
 };
 
 export default Trends;
-
