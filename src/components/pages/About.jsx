@@ -8,12 +8,25 @@ const API_URL = `https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}&nu
 
 const AboutPage = () => {
   const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(API_URL)
-      .then((response) => response.json())
-      .then((data) => setRecipes(data.recipes))
-      .catch((error) => console.error("Error fetching recipes:", error));
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch recipes");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setRecipes(data.recipes || []);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -37,7 +50,9 @@ const AboutPage = () => {
                 From quick snacks to gourmet meals, Foodify offers a variety of
                 recipes that suit every taste and occasion.
               </p>
-              <Button variant="primary">Explore Recipes</Button>
+              <Link to="/recipes">
+                <Button variant="primary">Explore Recipes</Button>
+              </Link>
             </Col>
             <Col md={6} className="hero-image">
               <img
@@ -167,15 +182,15 @@ const AboutPage = () => {
         </Container>
       </section>
 
-      {/*Updated Recipes Section to show loading spinner: */}
+      {/* Recipes Section */}
       <section className="recipes-section">
         <Container>
           <h2 className="text-center">Diverse Food Recipes</h2>
           <Row>
             {recipes && recipes.length > 0 ? (
               recipes.map((recipe) => (
-                <Col md={4} key={recipe.id}>
-                  <Card>
+                <Col md={4} className="mb-20" key={recipe.id}>
+                  <Card className="h-100">
                     <Card.Img
                       variant="top"
                       src={recipe.image}
@@ -209,9 +224,8 @@ const AboutPage = () => {
         <Container>
           <h2 className="text-center mb-4">Our Trusted Stakeholders</h2>
           <Row>
-            {/* Stakeholder 1 */}
-            <Col md={4} className="mb-4">
-              <Card className="stakeholder-card">
+            <Col md={4} className="mb-20">
+              <Card className="h-100 stakeholder-card">
                 <Card.Img
                   variant="top"
                   src="https://photos.peopleimages.com/picture/202302/2773109-little-girl-farm-and-agriculture-in-green-harvest-for-sustainability-organic-and-production-in-nature.-portrait-of-child-holding-crops-in-sustainable-farming-in-the-countryside-for-natural-resource-fit_400_400.jpg"
@@ -226,10 +240,8 @@ const AboutPage = () => {
                 </Card.Body>
               </Card>
             </Col>
-
-            {/* Stakeholder 2 */}
-            <Col md={4} className="mb-4">
-              <Card className="stakeholder-card">
+            <Col md={4} className="mb-20">
+              <Card className="h-100 stakeholder-card">
                 <Card.Img
                   variant="top"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqG2U1qk8YpdPa3dLj5znrMbxWq3kAzbXBBA&s"
@@ -244,10 +256,8 @@ const AboutPage = () => {
                 </Card.Body>
               </Card>
             </Col>
-
-            {/* Stakeholder 3 */}
-            <Col md={4} className="mb-4">
-              <Card className="stakeholder-card">
+            <Col md={4} className="mb-20">
+              <Card className="h-100 stakeholder-card">
                 <Card.Img
                   variant="top"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQal9EL59iPSfZ05l4OVr2gTZ21pG9FAtLkVQ&s"
